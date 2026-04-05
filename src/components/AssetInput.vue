@@ -14,6 +14,12 @@ const handleInput = () => {
     emit('update:amount', parsedAmount)
   }
 }
+
+const preventInvalidKeys = (e) => {
+  if (['e', 'E', '+', '-'].includes(e.key)) {
+    e.preventDefault()
+  }
+}
 </script>
 
 <template>
@@ -30,6 +36,7 @@ const handleInput = () => {
         step="0.01"
         aria-describedby="usd-amount-hint"
         @input="handleInput"
+        @keydown="preventInvalidKeys"
       />
     </div>
     <span id="usd-amount-hint" class="sr-only">Enter a USD amount to calculate your BTC and ETH allocation</span>
