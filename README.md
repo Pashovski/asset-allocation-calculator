@@ -1,5 +1,31 @@
-# Vue 3 + Vite
+## Asset Allocation Calculator
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+A web app that calculates a 70/30 BTC/ETH allocation based on a USD investment amount, using live exchange rates from Coinbase.
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+### Running the project
+
+```bash
+npm install
+npm run dev
+```
+
+### Tech choices
+
+- **Vite + Vue 3** with Composition API (`<script setup>`)
+- **Scoped styles** in single-file components
+- **Composable** (`useExchangeRates`) to encapsulate API logic
+
+### Design decisions
+
+- **Reactive computed allocations** — results update as you type, no manual calculate button
+- **`<output>` elements** for allocation results — semantic HTML for calculated values
+- **`aria-live` region** so screen readers announce updated allocations
+- **Error recovery** with retry capability
+- **Responsive two-column layout** that stacks on mobile
+
+### Given more time
+
+- Auto-refresh exchange rates on an interval
+- Configurable allocation percentages
+- Unit tests with Vitest
+- Input formatting (commas, currency symbol in the value)
