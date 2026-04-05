@@ -40,7 +40,10 @@ const allocations = computed(() => {
 
 <template>
   <div class="app">
-    <h1>Asset allocation calculator</h1>
+    <div class="header">
+      <h1>Asset allocation calculator</h1>
+      <button class="refresh-button" @click="fetchRates" :disabled="loading" aria-label="Refresh exchange rates">Refresh rates</button>
+    </div>
 
     <!-- Loading/Error states -->
     <div v-if="loading" class="status" role="status">Loading exchange rates...</div>
@@ -82,10 +85,38 @@ const allocations = computed(() => {
   text-align: left;
 }
 
-h1 {
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-bottom: 2rem;
+}
+
+h1 {
   font-size: 1.75rem;
   margin-top: 0;
+  margin-bottom: 0;
+}
+
+.refresh-button {
+  padding: 0.4em 0.8em;
+  border: 1px solid #d0d0d0;
+  border-radius: 4px;
+  background-color: #ffffff;
+  color: #213547;
+  font-size: 0.9em;
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.refresh-button:hover:not(:disabled) {
+  border-color: #999;
+}
+
+.refresh-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .container {
