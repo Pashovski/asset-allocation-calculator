@@ -7,7 +7,12 @@ const amount = ref('')
 
 const handleInput = () => {
   const parsedAmount = parseFloat(amount.value)
-  emit('update:amount', isNaN(parsedAmount) ? null : parsedAmount)
+  if (isNaN(parsedAmount) || parsedAmount === 0) {
+    amount.value = ''
+    emit('update:amount', null)
+  } else {
+    emit('update:amount', parsedAmount)
+  }
 }
 </script>
 
