@@ -42,13 +42,10 @@ const allocations = computed(() => {
   <div class="app">
     <div class="header">
       <h1>Asset allocation calculator</h1>
-      <button class="refresh-button" @click="fetchRates" :disabled="loading" aria-label="Refresh exchange rates">{{ loading ? (initialLoad ? 'Loading...' : 'Refreshing...') : 'Refresh rates' }}</button>
-    </div>
-
-    <!-- Error state -->
-    <div v-if="error" class="status error" role="alert">
-      <span>{{ error }}</span>
-      <button class="retry-button" @click="fetchRates" aria-label="Retry fetching exchange rates">Retry</button>
+      <div class="header-controls">
+        <span v-if="error" class="header-error" role="alert">{{ error }}</span>
+        <button class="refresh-button" @click="fetchRates" :disabled="loading" aria-label="Refresh exchange rates">{{ error ? 'Retry' : (loading ? (initialLoad ? 'Loading...' : 'Refreshing...') : 'Refresh rates') }}</button>
+      </div>
     </div>
 
     <div class="container">
@@ -141,36 +138,16 @@ h1 {
   gap: 1.5rem;
 }
 
-.status {
-  padding: 1rem;
-  margin: 1rem 0;
-  border-radius: 4px;
-  background-color: #e8f5e9;
-  color: #2e7d32;
+.header-controls {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 
-.status.error {
-  background-color: #ffebee;
+.header-error {
   color: #c62828;
-}
-
-.retry-button {
-  padding: 0.4em 0.8em;
-  border: 1px solid #d0d0d0;
-  border-radius: 4px;
-  background-color: #ffffff;
-  color: #213547;
   font-size: 0.9em;
-  font-family: inherit;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-.retry-button:hover {
-  border-color: #999;
+  font-weight: 500;
 }
 
 .placeholder {

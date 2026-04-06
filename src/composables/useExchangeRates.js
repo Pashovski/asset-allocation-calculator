@@ -31,6 +31,8 @@ export function useExchangeRates() {
       btcRate.value = parseFloat(data.data.rates.BTC)
       ethRate.value = parseFloat(data.data.rates.ETH)
     } catch (err) {
+      btcRate.value = null
+      ethRate.value = null
       error.value = 'Unable to load exchange rates. Please try again.'
       console.error(err)
     } finally {
