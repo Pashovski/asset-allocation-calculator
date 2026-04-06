@@ -5,6 +5,7 @@ export function useExchangeRates() {
   const ethRate = ref(null)
   const loading = ref(false)
   const error = ref(null)
+  const initialLoad = ref(true)
 
   const fetchRates = async () => {
     loading.value = true
@@ -34,6 +35,7 @@ export function useExchangeRates() {
       console.error(err)
     } finally {
       loading.value = false
+      initialLoad.value = false
     }
   }
 
@@ -48,6 +50,7 @@ export function useExchangeRates() {
     ethRate,
     loading,
     error,
+    initialLoad,
     fetchRates
   }
 }

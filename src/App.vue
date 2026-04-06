@@ -4,7 +4,7 @@ import AssetInput from './components/AssetInput.vue'
 import AllocationResult from './components/AllocationResult.vue'
 import { useExchangeRates } from './composables/useExchangeRates'
 
-const { btcRate, ethRate, loading, error, fetchRates } = useExchangeRates()
+const { btcRate, ethRate, loading, error, initialLoad, fetchRates } = useExchangeRates()
 const usdAmount = ref(null)
 
 const allocations = computed(() => {
@@ -42,7 +42,7 @@ const allocations = computed(() => {
   <div class="app">
     <div class="header">
       <h1>Asset allocation calculator</h1>
-      <button class="refresh-button" @click="fetchRates" :disabled="loading" aria-label="Refresh exchange rates">{{ loading ? 'Refreshing...' : 'Refresh rates' }}</button>
+      <button class="refresh-button" @click="fetchRates" :disabled="loading" aria-label="Refresh exchange rates">{{ loading ? (initialLoad ? 'Loading...' : 'Refreshing...') : 'Refresh rates' }}</button>
     </div>
 
     <!-- Error state -->
