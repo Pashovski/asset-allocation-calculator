@@ -25,7 +25,6 @@ npm run dev
 
 ### Given more time
 
-- Auto-refresh exchange rates on an interval
 - Configurable allocation percentages
 - Unit tests with Vitest
-- Input formatting (commas, currency symbol in the value)
+- Input formatting (commas)
