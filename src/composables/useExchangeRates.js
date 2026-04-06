@@ -44,7 +44,6 @@ export function useExchangeRates() {
   // Fetch rates on component mount
   onMounted(() => {
     fetchRates()
-    // TODO: Consider adding auto-refresh with setInterval
   })
 
   return {
