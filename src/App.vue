@@ -42,11 +42,10 @@ const allocations = computed(() => {
   <div class="app">
     <div class="header">
       <h1>Asset allocation calculator</h1>
-      <button class="refresh-button" @click="fetchRates" :disabled="loading" aria-label="Refresh exchange rates">Refresh rates</button>
+      <button class="refresh-button" @click="fetchRates" :disabled="loading" aria-label="Refresh exchange rates">{{ loading ? 'Refreshing...' : 'Refresh rates' }}</button>
     </div>
 
-    <!-- Loading/Error states -->
-    <div v-if="loading" class="status" role="status">Loading exchange rates...</div>
+    <!-- Error state -->
     <div v-if="error" class="status error" role="alert">
       <span>{{ error }}</span>
       <button class="retry-button" @click="fetchRates" aria-label="Retry fetching exchange rates">Retry</button>
